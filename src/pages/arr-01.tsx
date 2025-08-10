@@ -56,9 +56,7 @@ function ListFormatter() {
     <div className="grid grid-cols-2 gap-4 p-6 w-full">
       {/* Left side: Input */}
       <Card className="flex flex-col shadow">
-        <CardHeader>
-          <CardTitle>Paste or type</CardTitle>
-        </CardHeader>
+        <CardHeader>{/* <CardTitle>Paste or type</CardTitle> */}</CardHeader>
         <CardContent className="flex flex-col gap-4 flex-1">
           <Textarea
             placeholder="Paste your data here..."
@@ -72,7 +70,7 @@ function ListFormatter() {
       {/* Right side: Output */}
       <Card className="flex flex-col shadow">
         <CardHeader>
-          <CardTitle>Result</CardTitle>
+          {/* <CardTitle>Result</CardTitle> */}
           <div className="flex items-center gap-4">
             <Select
               value={quoteType}

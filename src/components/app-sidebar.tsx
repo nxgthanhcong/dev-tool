@@ -10,13 +10,18 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader>
-        <div className="p-4 font-bold">Cong provjp devtool</div>
+        <img
+          src="/dev-tool/logo.jpg"
+          alt="..."
+          className="rounded-lg object-cover dark:brightness-[0.2] dark:grayscale w-16"
+        />
+        <div className="pl-2 font-bold">Cong provjp devtool</div>
       </SidebarHeader>
 
       <SidebarContent>
@@ -25,8 +30,17 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton>
-                  <Link to="/arr-01">Arr format</Link>
+                <SidebarMenuButton className="w-full">
+                  <NavLink
+                    to="/dev-tool/arr-01"
+                    className={({ isActive }) =>
+                      `block w-full transition-all duration-300 px-2 py-1 rounded-md ${
+                        isActive ? "font-medium  underline" : ""
+                      }`
+                    }
+                  >
+                    Arr format
+                  </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
@@ -35,7 +49,7 @@ export function AppSidebar() {
       </SidebarContent>
 
       <SidebarFooter>
-        <div className="p-4 text-sm">© 2025 My Company</div>
+        <div className="p-4 text-sm">badvibe4rever © 2025 </div>
       </SidebarFooter>
     </Sidebar>
   );
