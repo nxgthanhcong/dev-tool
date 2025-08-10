@@ -1,8 +1,5 @@
-import { useEffect, useState } from "react";
-import PageLayout from "./page-layout";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -10,6 +7,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { useEffect, useState } from "react";
+import PageLayout from "./page-layout";
 
 function ListFormatter() {
   const [input, setInput] = useState("");

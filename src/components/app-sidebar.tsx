@@ -10,18 +10,20 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader>
-        <img
-          src="/dev-tool/logo.jpg"
-          alt="..."
-          className="rounded-lg object-cover dark:brightness-[0.2] dark:grayscale w-16"
-        />
-        <div className="pl-2 font-bold">Cong provjp devtool</div>
+        <Link to="/">
+          <img
+            src="/dev-tool/logo.jpg"
+            alt="..."
+            className="rounded-lg object-cover dark:brightness-[0.2] dark:grayscale w-16"
+          />
+          <div className="pl-2 font-bold">Cong provjp devtool</div>
+        </Link>
       </SidebarHeader>
 
       <SidebarContent>
@@ -32,7 +34,7 @@ export function AppSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton className="w-full">
                   <NavLink
-                    to="/dev-tool/arr-01"
+                    to="/arr-01"
                     className={({ isActive }) =>
                       `block w-full transition-all duration-300 px-2 py-1 rounded-md ${
                         isActive ? "font-medium  underline" : ""

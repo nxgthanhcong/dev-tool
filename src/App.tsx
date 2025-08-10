@@ -11,7 +11,7 @@ function App() {
       <main className="flex-1">
         <SidebarTrigger />
         <Routes>
-          <Route path="/dev-tool/arr-01" element={<Arr01 />} />
+          <Route path="/arr-01" element={<Arr01 />} />
         </Routes>
       </main>
     </SidebarProvider>
