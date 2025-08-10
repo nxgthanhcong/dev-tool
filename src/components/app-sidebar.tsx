@@ -19,9 +19,9 @@ export function AppSidebar() {
       <SidebarHeader>
         <Link to="/">
           <img
-            src="/dev-tool/logo.jpg"
+            src="/dev-tool/junzu02.jpg"
             alt="..."
-            className="rounded-lg object-cover dark:brightness-[0.2] dark:grayscale w-16"
+            className="rounded-lg object-cover dark:brightness-[0.2] dark:grayscale w-24"
           />
           <div className="pl-2 font-bold">Cong provjp devtool</div>
         </Link>
@@ -66,6 +66,14 @@ export function AppSidebar() {
       </SidebarContent>
 
       <SidebarFooter>
+        <div className="flex justify-between items-end">
+          suy sup tuoi 25
+          <img
+            src="/dev-tool/tubt.jpg"
+            alt="Photo by Drew Beamer"
+            className="h-16 w-16 rounded-lg object-cover dark:brightness-[0.2] dark:grayscale"
+          />{" "}
+        </div>
         <AspectRatio ratio={1 / 1} className="bg-muted rounded-lg">
           <img
             src="/dev-tool/qr.png"
@@ -73,7 +81,12 @@ export function AppSidebar() {
             className="h-full w-full rounded-lg object-cover dark:brightness-[0.2] dark:grayscale"
           />
         </AspectRatio>
-        <div className="p-4 text-sm">badvibe4rever © 2025 </div>
+        <div className="p-4 text-sm">
+          <p className="font-medium ">
+            <hr />
+            badvibe4rever © 2025{" "}
+          </p>
+        </div>
       </SidebarFooter>
     </Sidebar>
   );
