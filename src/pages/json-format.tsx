@@ -12,6 +12,11 @@ import parserBabel from "prettier/plugins/babel";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable";
 
 function JSTool() {
   const [input, setInput] = useState("");
@@ -188,25 +193,29 @@ function JSTool() {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-4 p-4 min-h-[80vh]">
-      {/* Left - input */}
-      <Card className="flex flex-col h-full">
-        <CardHeader>
-          <CardTitle>Input (paste JS / object / JSON)</CardTitle>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-3 flex-grow">
-          <Textarea
-            placeholder={`Examples:
-{ a:1, b:2, }
-[1,2,3,]
-name: "John", age:30
-function f(){return {x:1}}`}
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            className="flex-grow font-mono min-h-[320px] focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none"
-          />
-          <div className="flex justify-between items-center gap-4">
-            {/* <label className="flex items-center gap-2 cursor-pointer select-none">
+    <ResizablePanelGroup
+      direction="horizontal"
+      className="grid grid-cols-2 gap-4 p-4 min-h-[80vh]"
+    >
+      <ResizablePanel defaultSize={30}>
+        {/* Left - input */}
+        <Card className="flex flex-col h-full">
+          <CardHeader>
+            <CardTitle>Input (paste JS / object / JSON)</CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-3 flex-grow">
+            <Textarea
+              placeholder={`Examples:
+                { a:1, b:2, }
+                [1,2,3,]
+                name: "John", age:30
+                function f(){return {x:1}}`}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              className="flex-grow font-mono min-h-[320px] focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none"
+            />
+            <div className="flex justify-between items-center gap-4">
+              {/* <label className="flex items-center gap-2 cursor-pointer select-none">
               <input
                 type="checkbox"
                 checked={auto}
@@ -214,7 +223,7 @@ function f(){return {x:1}}`}
               />
               Auto
             </label> */}
-            {/* <label className="flex items-center gap-2 select-none">
+              {/* <label className="flex items-center gap-2 select-none">
               Indent:
               <select
                 value={indentSize}
@@ -225,7 +234,7 @@ function f(){return {x:1}}`}
                 <option value={4}>4</option>
               </select>
             </label> */}
-            {/* <label
+              {/* <label
               className="flex items-center gap-2 cursor-pointer select-none"
               title="Unsafe eval can run code. Use carefully!"
             >
@@ -236,7 +245,7 @@ function f(){return {x:1}}`}
               />
               Unsafe Eval
             </label> */}
-            {/* <label
+              {/* <label
               className="flex items-center gap-2 cursor-pointer select-none"
               title="Use Prettier for output formatting"
             >
@@ -247,10 +256,10 @@ function f(){return {x:1}}`}
               />
               Prettier
             </label> */}
-            {/* <Button onClick={formatNow} disabled={auto}>
+              {/* <Button onClick={formatNow} disabled={auto}>
               Format
             </Button> */}
-            {/* <Button
+              {/* <Button
               variant="outline"
               onClick={() => {
                 setInput("");
@@ -260,28 +269,39 @@ function f(){return {x:1}}`}
             >
               Clear
             </Button> */}
-          </div>
-          {error && (
-            <div className="text-sm text-red-600 mt-2">Error: {error}</div>
-          )}
-        </CardContent>
-      </Card>
+            </div>
+            {error && (
+              <div className="text-sm text-red-600 mt-2">Error: {error}</div>
+            )}
+          </CardContent>
+        </Card>
+      </ResizablePanel>
+      <ResizableHandle />
+      <ResizablePanel defaultSize={70}>
+        <ResizablePanelGroup direction="vertical">
+          <ResizablePanel defaultSize={100}>
+            {/* Right - output */}
+            <Card className="flex flex-col h-full">
+              <CardHeader className="flex justify-between items-center">
+                <CardTitle>Formatted Output</CardTitle>
+              </CardHeader>
+              <CardContent className="flex flex-col gap-3 flex-grow">
+                <Textarea
+                  readOnly
+                  value={output}
+                  className="min-h-[320px] font-mono flex-grow focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none"
+                />
+                <Button onClick={handleCopy}>Copy</Button>
+              </CardContent>
+            </Card>
+          </ResizablePanel>
+          <ResizableHandle />
+        </ResizablePanelGroup>
+      </ResizablePanel>
+    </ResizablePanelGroup>
+    // <div className="grid grid-cols-2 gap-4 p-4 min-h-[80vh]">
 
-      {/* Right - output */}
-      <Card className="flex flex-col h-full">
-        <CardHeader className="flex justify-between items-center">
-          <CardTitle>Formatted Output</CardTitle>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-3 flex-grow">
-          <Textarea
-            readOnly
-            value={output}
-            className="min-h-[320px] font-mono flex-grow focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none"
-          />
-          <Button onClick={handleCopy}>Copy</Button>
-        </CardContent>
-      </Card>
-    </div>
+    // </div>
   );
 }
 
