@@ -189,21 +189,18 @@ function JSTool() {
     if (!output) return;
     try {
       await navigator.clipboard.writeText(output);
-    } catch {}
+    } catch { }
   }
 
   return (
     <ResizablePanelGroup
       direction="horizontal"
-      className="grid grid-cols-2 gap-4 p-4 min-h-[80vh]"
+      className="grid grid-cols-2 gap-4 min-h-[50vh] mt-6"
     >
       <ResizablePanel defaultSize={30}>
         {/* Left - input */}
-        <Card className="flex flex-col h-full">
-          <CardHeader>
-            <CardTitle>Input (paste JS / object / JSON)</CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-3 flex-grow">
+        <Card className="flex flex-col h-full bg-sidebar ">
+          <CardContent className="flex flex-col gap-0 flex-grow p-0">
             <Textarea
               placeholder={`Examples:
                 { a:1, b:2, }
@@ -212,7 +209,7 @@ function JSTool() {
                 function f(){return {x:1}}`}
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              className="flex-grow font-mono min-h-[320px] focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none"
+              className="bg-input2 flex-grow font-mono h-[320px] focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none"
             />
             <div className="flex justify-between items-center gap-4">
               {/* <label className="flex items-center gap-2 cursor-pointer select-none">
@@ -279,17 +276,14 @@ function JSTool() {
       <ResizableHandle />
       <ResizablePanel defaultSize={70}>
         <ResizablePanelGroup direction="vertical">
-          <ResizablePanel defaultSize={100}>
+          <ResizablePanel defaultSize={100} className="border-none">
             {/* Right - output */}
-            <Card className="flex flex-col h-full">
-              <CardHeader className="flex justify-between items-center">
-                <CardTitle>Formatted Output</CardTitle>
-              </CardHeader>
-              <CardContent className="flex flex-col gap-3 flex-grow">
+            <Card className="flex flex-col h-full bg-transparent border-none">
+              <CardContent className="flex flex-col gap-3 flex-grow p-0">
                 <Textarea
                   readOnly
                   value={output}
-                  className="min-h-[320px] font-mono flex-grow focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none"
+                  className="bg-sidebar flex-grow font-mono flex-grow focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none"
                 />
                 <Button onClick={handleCopy}>Copy</Button>
               </CardContent>
@@ -299,9 +293,6 @@ function JSTool() {
         </ResizablePanelGroup>
       </ResizablePanel>
     </ResizablePanelGroup>
-    // <div className="grid grid-cols-2 gap-4 p-4 min-h-[80vh]">
-
-    // </div>
   );
 }
 

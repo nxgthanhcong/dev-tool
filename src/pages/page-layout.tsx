@@ -8,14 +8,17 @@ interface PageLayoutProps {
 export default function PageLayout({ title, children }: PageLayoutProps) {
   return (
     <div className="flex flex-col gap-4 ml-5">
-      {/* Page Header */}
-      <header>
-        <h1 className="text-2xl font-bold">{title}</h1>
-        <p className="text-gray-500">This is the {title.toLowerCase()} page.</p>
-      </header>
+      <div className="px-40">
 
-      {/* Page Body */}
-      <section>{children}</section>
+        {/* Page Header */}
+        <header>
+          <h1 className="text-2xl font-bold">{title}</h1>
+          <p className="text-gray-500">This is the {title.toLowerCase()} page.</p>
+        </header>
+
+        {/* Page Body */}
+        <section>{children}</section>
+      </div>
     </div>
   );
 }

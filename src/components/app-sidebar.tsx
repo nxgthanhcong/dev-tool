@@ -69,7 +69,7 @@ export function AppSidebar() {
           <img
             src="/dev-tool/qr.png"
             alt="Photo by Drew Beamer"
-            className="h-full w-full rounded-lg object-cover dark:brightness-[0.2] dark:grayscale"
+            className="h-full w-full rounded-lg object-cover dark:brightness-[0.9] dark:grayscale"
           />
         </AspectRatio>
         <div className="p-4 text-sm">
