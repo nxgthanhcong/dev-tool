@@ -19,11 +19,11 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarHeader>
         <Link to="/">
-          <img
+          {/* <img
             src="/dev-tool/junzu02.jpg"
             alt="..."
             className="rounded-lg object-cover dark:brightness-[0.2] dark:grayscale w-24"
-          />
+          /> */}
           <div className="pl-2 font-bold">Cong provjp devtool</div>
         </Link>
       </SidebarHeader>
@@ -38,8 +38,7 @@ export function AppSidebar() {
                   <NavLink
                     to="/arr-01"
                     className={({ isActive }) =>
-                      `block w-full transition-all duration-300 px-2 py-1 rounded-md ${
-                        isActive ? "font-medium  underline" : ""
+                      `block w-full transition-all duration-300 px-2 py-1 rounded-md ${isActive ? "font-medium  underline" : ""
                       }`
                     }
                   >
@@ -52,8 +51,7 @@ export function AppSidebar() {
                   <NavLink
                     to="/json-01"
                     className={({ isActive }) =>
-                      `block w-full transition-all duration-300 px-2 py-1 rounded-md ${
-                        isActive ? "font-medium  underline" : ""
+                      `block w-full transition-all duration-300 px-2 py-1 rounded-md ${isActive ? "font-medium  underline" : ""
                       }`
                     }
                   >
