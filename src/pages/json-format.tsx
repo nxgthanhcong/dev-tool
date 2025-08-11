@@ -18,6 +18,9 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 
+import CopyIcon from "@/components/icons/copy";
+import ParticleButton from "@/components/kokonutui/particle-button";
+
 function JSTool() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
@@ -192,10 +195,40 @@ function JSTool() {
     } catch { }
   }
 
+  function syntaxHighlightJson(jsonString) {
+    // Escape HTML entities
+    const safeJson = jsonString
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+
+    // Add color to keys, strings, numbers, booleans, null
+    return safeJson.replace(
+      /("(\\u[\da-fA-F]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(\.\d+)?([eE][+\-]?\d+)?)/g,
+      (match) => {
+        if (/^"/.test(match)) {
+          if (/:$/.test(match)) {
+            // Key
+            return `<span style="color:#ffb74d">${match}</span>`;
+          } else {
+            // String value
+            return `<span style="color:white">${match}</span>`;
+          }
+        } else if (/true|false/.test(match)) {
+          return `<span style="color:#ffb86c">${match}</span>`; // Boolean
+        } else if (/null/.test(match)) {
+          return `<span style="color:#8be9fd">${match}</span>`; // Null
+        } else {
+          return `<span style="color:#bd93f9">${match}</span>`; // Number
+        }
+      }
+    );
+  }
+
   return (
     <ResizablePanelGroup
       direction="horizontal"
-      className="grid grid-cols-2 gap-4 min-h-[50vh] mt-6"
+      className="grid grid-cols-2 gap-4 min-h-[70vh] mt-6"
     >
       <ResizablePanel defaultSize={30}>
         {/* Left - input */}
@@ -212,60 +245,6 @@ function JSTool() {
               className="bg-input2 flex-grow font-mono h-[320px] focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none"
             />
             <div className="flex justify-between items-center gap-4">
-              {/* <label className="flex items-center gap-2 cursor-pointer select-none">
-              <input
-                type="checkbox"
-                checked={auto}
-                onChange={(e) => setAuto(e.target.checked)}
-              />
-              Auto
-            </label> */}
-              {/* <label className="flex items-center gap-2 select-none">
-              Indent:
-              <select
-                value={indentSize}
-                onChange={(e) => setIndentSize(Number(e.target.value))}
-                className="border rounded px-2 py-1 ml-1"
-              >
-                <option value={2}>2</option>
-                <option value={4}>4</option>
-              </select>
-            </label> */}
-              {/* <label
-              className="flex items-center gap-2 cursor-pointer select-none"
-              title="Unsafe eval can run code. Use carefully!"
-            >
-              <input
-                type="checkbox"
-                checked={allowUnsafeEval}
-                onChange={(e) => setAllowUnsafeEval(e.target.checked)}
-              />
-              Unsafe Eval
-            </label> */}
-              {/* <label
-              className="flex items-center gap-2 cursor-pointer select-none"
-              title="Use Prettier for output formatting"
-            >
-              <input
-                type="checkbox"
-                checked={usePrettier}
-                onChange={(e) => setUsePrettier(e.target.checked)}
-              />
-              Prettier
-            </label> */}
-              {/* <Button onClick={formatNow} disabled={auto}>
-              Format
-            </Button> */}
-              {/* <Button
-              variant="outline"
-              onClick={() => {
-                setInput("");
-                setOutput("");
-                setError(null);
-              }}
-            >
-              Clear
-            </Button> */}
             </div>
             {error && (
               <div className="text-sm text-red-600 mt-2">Error: {error}</div>
@@ -279,13 +258,21 @@ function JSTool() {
           <ResizablePanel defaultSize={100} className="border-none">
             {/* Right - output */}
             <Card className="flex flex-col h-full bg-transparent border-none">
-              <CardContent className="flex flex-col gap-3 flex-grow p-0">
+              <CardContent className="flex flex-col gap-3 flex-grow p-0 relative">
                 <Textarea
                   readOnly
                   value={output}
                   className="bg-sidebar flex-grow font-mono flex-grow focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none"
                 />
-                <Button onClick={handleCopy}>Copy</Button>
+                {/* <div
+                  className="bg-sidebar flex-grow font-mono p-3 overflow-roll rounded"
+                  style={{ whiteSpace: "pre" }}
+                  dangerouslySetInnerHTML={{ __html: syntaxHighlightJson(output) }}
+                /> */}
+                <ParticleButton onClick={handleCopy} className="absolute right-8 bottom-8">
+                  {/* <CopyIcon /> */}
+                </ParticleButton>
+                {/* <button onClick={handleCopy} className="flex gap-1 items-center select-none py-1 absolute right-8 top-2" aria-label="Copy">Copy</button> */}
               </CardContent>
             </Card>
           </ResizablePanel>

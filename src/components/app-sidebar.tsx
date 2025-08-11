@@ -59,6 +59,19 @@ export function AppSidebar() {
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton className="w-full">
+                  <NavLink
+                    to="/xml-01"
+                    className={({ isActive }) =>
+                      `block w-full transition-all duration-300 px-2 py-1 rounded-md ${isActive ? "font-medium  underline" : ""
+                      }`
+                    }
+                  >
+                    Xml format
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

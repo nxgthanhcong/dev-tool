@@ -1,5 +1,6 @@
-import { Button } from "@/components/ui/button";
+import ParticleButton from "@/components/kokonutui/particle-button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 import {
   Select,
   SelectContent,
@@ -10,7 +11,6 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { useEffect, useState } from "react";
 import PageLayout from "./page-layout";
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 
 function ListFormatter() {
   const [input, setInput] = useState("");
@@ -109,13 +109,16 @@ function ListFormatter() {
                     </Select>
                   </div>
                 </CardHeader>
-                <CardContent className="flex flex-col gap-3 flex-1 p-0 mt-4">
+                <CardContent className="flex flex-col gap-3 flex-1 p-0 mt-4 relative">
                   <Textarea
                     value={output}
                     readOnly
                     className="flex-grow bg-sidebar focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none"
                   />
-                  <Button onClick={handleCopy}>Copy</Button>
+                  <ParticleButton onClick={handleCopy} className="absolute right-8 bottom-8">
+                    {/* <CopyIcon /> */}
+                  </ParticleButton>
+
                 </CardContent>
               </Card>
             </ResizablePanel>
