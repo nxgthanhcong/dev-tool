@@ -78,13 +78,15 @@ export function AppSidebar() {
       </SidebarContent>
 
       <SidebarFooter>
-        <AspectRatio ratio={1 / 1} className="bg-muted rounded-lg">
-          <img
-            src="/dev-tool/qr.png"
-            alt="Photo by Drew Beamer"
-            className="h-full w-full rounded-lg object-cover dark:brightness-[0.9] dark:grayscale"
-          />
-        </AspectRatio>
+        <div className="px-4">
+          <AspectRatio ratio={1 / 1} className="bg-muted rounded-lg">
+            <img
+              src="/dev-tool/qr.png"
+              alt="Photo by Drew Beamer"
+              className="h-full w-full rounded-lg object-cover dark:brightness-[0.9] dark:grayscale"
+            />
+          </AspectRatio>
+        </div>
         <div className="p-4 text-sm">
           <p className="font-medium ">
             <hr />

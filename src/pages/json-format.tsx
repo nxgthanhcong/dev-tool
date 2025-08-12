@@ -20,6 +20,7 @@ import {
 
 import CopyIcon from "@/components/icons/copy";
 import ParticleButton from "@/components/kokonutui/particle-button";
+import JsonViewComponent from "@/components/json-view";
 
 function JSTool() {
   const [input, setInput] = useState("");
@@ -189,6 +190,9 @@ function JSTool() {
   }
 
   async function handleCopy() {
+
+    console.log("cp", output);
+
     if (!output) return;
     try {
       await navigator.clipboard.writeText(output);
@@ -258,20 +262,10 @@ function JSTool() {
           <ResizablePanel defaultSize={100} className="border-none">
             {/* Right - output */}
             <Card className="flex flex-col h-full bg-transparent border-none">
-              <CardContent className="flex flex-col gap-3 flex-grow p-0 relative">
-                <Textarea
-                  readOnly
-                  value={output}
-                  className="bg-sidebar flex-grow font-mono flex-grow focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none"
-                />
-                {/* <div
-                  className="bg-sidebar flex-grow font-mono p-3 overflow-roll rounded"
-                  style={{ whiteSpace: "pre" }}
-                  dangerouslySetInnerHTML={{ __html: syntaxHighlightJson(output) }}
-                /> */}
-                <ParticleButton onClick={handleCopy} className="absolute right-8 bottom-8">
-                  {/* <CopyIcon /> */}
-                </ParticleButton>
+              <CardContent className="flex flex-col gap-3 flex-grow p-0 relative overflow-y-scroll">
+
+                <JsonViewComponent value={output} />
+                {/* <ParticleButton onClick={handleCopy} className="absolute right-8 bottom-8 z-50" /> */}
                 {/* <button onClick={handleCopy} className="flex gap-1 items-center select-none py-1 absolute right-8 top-2" aria-label="Copy">Copy</button> */}
               </CardContent>
             </Card>
