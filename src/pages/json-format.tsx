@@ -190,9 +190,6 @@ function JSTool() {
   }
 
   async function handleCopy() {
-
-    console.log("cp", output);
-
     if (!output) return;
     try {
       await navigator.clipboard.writeText(output);
@@ -265,7 +262,7 @@ function JSTool() {
               <CardContent className="flex flex-col gap-3 flex-grow p-0 relative overflow-y-scroll">
 
                 <JsonViewComponent value={output} />
-                {/* <ParticleButton onClick={handleCopy} className="absolute right-8 bottom-8 z-50" /> */}
+                <ParticleButton onClick={handleCopy} className="absolute right-8 bottom-8 z-50" />
                 {/* <button onClick={handleCopy} className="flex gap-1 items-center select-none py-1 absolute right-8 top-2" aria-label="Copy">Copy</button> */}
               </CardContent>
             </Card>

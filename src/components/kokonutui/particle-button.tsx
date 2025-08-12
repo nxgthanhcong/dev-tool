@@ -78,6 +78,8 @@ export default function ParticleButton({
     const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
         setShowParticles(true);
 
+        onClick();
+
         setTimeout(() => {
             setShowParticles(false);
         }, successDuration);
